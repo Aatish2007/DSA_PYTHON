@@ -25,7 +25,7 @@ class Solution:
             resulr=max(result,r-l+1)
         return result
  '''           
-class Solution:
+'''class Solution:
     def lengthOfLongestSubstring(self, s):
         seen = set()
         left = 0
@@ -39,5 +39,25 @@ class Solution:
 
             seen.add(s[right])
             max_len = max(max_len, right - left + 1)
+
+        return max_len
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        left = 0
+        right = 0
+        seen = set()
+        max_len = 0
+
+        while right < len(s):
+
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
+
+            seen.add(s[right])
+            max_len = max(max_len, right - left + 1)
+
+            right += 1
 
         return max_len
