@@ -11,6 +11,17 @@ class Solution:
             slow=slow.next
             fast=fast.next.next
         return slow
-
+"""
+n=0
+temp=self.head
+while temp is not None:
+    n+=1
+    temp.next
+    #for even length
+    temp=self.head
+    for i in range(0,n//2):
+        temp=temp.next
+    return temp
+"""
 
         
