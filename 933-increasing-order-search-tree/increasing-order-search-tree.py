@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+'''
 class Solution:
     def increasingBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         vals=[]
@@ -20,4 +21,20 @@ class Solution:
             curr.right=TreeNode(v)
             curr=curr.right
         return dummy.right
+'''
+class Solution:
+    def increasingBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        dummy = TreeNode(0)
+        self.curr = dummy
         
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            node.left = None
+            self.curr.right = node
+            self.curr = node
+            inorder(node.right)
+            
+        inorder(root)
+        return dummy.right  # Must be indented inside increasingBST!
