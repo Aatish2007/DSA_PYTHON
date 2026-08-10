@@ -21,7 +21,8 @@ class Solution:
             curr.right=TreeNode(v)
             curr=curr.right
         return dummy.right
-'''
+
+#Approach-2 inplace pointer manipulation
 class Solution:
     def increasingBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         dummy = TreeNode(0)
@@ -38,3 +39,24 @@ class Solution:
             
         inorder(root)
         return dummy.right  # Must be indented inside increasingBST!
+'''
+#approach-3 morris traversal
+class Solution:
+    def increasingBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        dummy=TreeNode(0)
+        tail=dummy
+        curr=root
+        while curr:
+            if not curr.left:
+                tail.right=curr
+                tail=curr
+                curr=curr.right
+            else:
+                pred=curr.left
+                while pred.right:
+                    pred=pred.right
+                pred.right=curr
+                next_node=curr.left
+                curr.left=None
+                curr=next_node
+        return dummy.right
