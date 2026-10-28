@@ -21,6 +21,7 @@ class Solution:
 
         return max_length
 '''
+#BETTER APPROACH-SLIDING WINDOW
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         left = 0
@@ -44,3 +45,4 @@ class Solution:
                 max_length = max(max_length, window_length)
 
         return max_length
+
