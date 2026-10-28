@@ -1,63 +1,29 @@
 '''
-Brute force 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        max_len=0
-        for i in range(len(s)):
+        max_length=0
+        n=len(s)
+        for start in range(n):
             seen=set()
-            for j in range(i,len(s)):
-                if s[j] in seen :
+            for end in range(start,n):
+                if s[end] in seen :
                     break
-                seen.add(s[j])
-                max_len=max(max_len,j-i+1)
-        return max_len
-'''   
-'''#sliding window 
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        charset=set()
-        l=0
-        result=0
-        for r in range(len(s)):
-            while s[r] in charset:
-                l+=1
-            charset.add(s[r])
-            resulr=max(result,r-l+1)
-        return result
- '''           
-'''class Solution:
-    def lengthOfLongestSubstring(self, s):
-        seen = set()
-        left = 0
-        max_len = 0
-
-        for right in range(len(s)):
-
-            while s[right] in seen:
-                seen.remove(s[left])
-                left += 1
-
-            seen.add(s[right])
-            max_len = max(max_len, right - left + 1)
-
-        return max_len
+                seen.add(s[end])
+                max_length=max(max_length,end-start+1)
+        return max_length
 '''
 class Solution:
-    def lengthOfLongestSubstring(self, s):
+    def lengthOfLongestSubstring(self, s: str) -> int:
         left = 0
-        right = 0
+        max_length = 0
         seen = set()
-        max_len = 0
 
-        while right < len(s):
-
+        for right in range(len(s)):
             while s[right] in seen:
                 seen.remove(s[left])
                 left += 1
 
             seen.add(s[right])
-            max_len = max(max_len, right - left + 1)
+            max_length = max(max_length, right - left + 1)
 
-            right += 1
-
-        return max_len
+        return max_length
